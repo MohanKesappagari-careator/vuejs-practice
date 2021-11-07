@@ -1,18 +1,26 @@
 <template>
+  <h1 v-for="s in inp" :key="s">1{{ s }}</h1>
   <div>
     <form action="" @submit.prevent="clickit">
-      <input type="text" placeholder="email" v-model="email" />
-      <input type="text" placeholder="password" v-model="password" />
+      <custom-input label="gmail" v-model="email" placeholder="Gmail" />
+      <custom-input
+        label="password"
+        v-model="password"
+        placeholder="Password"
+      />
+      <p v-for="str in inputs" :key="str">{{ str }}</p>
+
       <button>Login</button>
     </form>
   </div>
 </template>
 
 <script>
+import CustomInput from "./Custom-Input.vue";
 export default {
-  email: "",
-  password: "",
-  name: "HelloWorld",
+  components: {
+    CustomInput,
+  },
   props: {
     msg: String,
   },
@@ -21,6 +29,14 @@ export default {
       console.log("click");
       console.log(this.email, "email", this.password, "password");
     },
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+      name: "HelloWorld",
+      inp: ["email", "password", "name"],
+    };
   },
 };
 </script>
